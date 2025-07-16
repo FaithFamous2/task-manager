@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Clipboard base -->
+  <rect
+    x="12"
+    y="8"
+    width="40"
+    height="48"
+    rx="4"
+    ry="4"
+    fill="#ffffff"
+    stroke="#4F46E5"
+    stroke-width="4"
+  />
+  <!-- Clipboard clip -->
+  <rect
+    x="22"
+    y="2"
+    width="20"
+    height="12"
+    rx="2"
+    ry="2"
+    fill="#4F46E5"
+  />
+  <!-- Checkmark -->
+  <path
+    d="M20 32 L28 40 L44 24"
+    stroke="#4F46E5"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
