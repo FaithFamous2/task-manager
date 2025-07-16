@@ -82,6 +82,7 @@ Create a `.env` file in the root directory:
 ```env
 REACT_APP_SUPABASE_URL=your_supabase_project_url
 REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_EDGE_FUNCTION_URL=your_supabase_edgefunction_url
 ```
 
 ### 5. Start the Development Server
@@ -92,7 +93,7 @@ npm start
 yarn start
 ```
 
-The application will be available at `http://localhost:3000`
+The application will be available at `http://localhost:3000` / `http://localhost:5173`
 
 ## Supabase Schema Description
 
