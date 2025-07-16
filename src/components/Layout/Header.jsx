@@ -15,7 +15,7 @@ const Header = () => {
     <header className="bg-indigo-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-xl font-bold">TaskFlow</Link>
+          <Link to="/" className="text-xl font-bold">TaskFlow - Task Manager</Link>
 
           {/* Mobile menu button */}
           <button
