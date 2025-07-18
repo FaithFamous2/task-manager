@@ -1,9 +1,15 @@
 import { supabase } from './supabase';
 
 export const signUp = async (email, password) => {
+  // Use the base URL from environment variables or fallback to the current origin
+  const baseUrl = import.meta.env.VITE_APP_BASE_URL || window.location.origin;
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      emailRedirectTo: `${baseUrl}/dashboard`,
+    },
   });
   return { data, error };
 };

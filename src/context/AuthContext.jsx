@@ -34,8 +34,14 @@ export function AuthProvider({ children }) {
       return { error };
     },
     signUp: async (email, password) => {
-      const { error } = await supabase.auth.signUp({ email, password });
-      return { error };
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${import.meta.env.VITE_APP_BASE_URL || window.location.origin}/dashboard`
+        }
+      });
+      return { data, error };
     },
     signOut: async () => {
       await supabase.auth.signOut();
