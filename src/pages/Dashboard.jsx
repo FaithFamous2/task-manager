@@ -1,13 +1,52 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { supabase } from '../services/supabase';
 import TaskForm from '../components/Tasks/TaskForm';
 import TaskList from '../components/Tasks/TaskList';
 import Header from '../components/Layout/Header';
 import useAuth from '../hooks/useAuth';
 
 const Dashboard = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [editingTask, setEditingTask] = useState(null);
   const { user } = useAuth();
   const taskListRef = useRef();
+
+  useEffect(() => {
+    const handleAuthRedirect = async () => {
+      const { data, error } = await supabase.auth.getSession();
+
+      if (!data.session) {
+        // Check URL for access token (email confirmation)
+        const queryParams = new URLSearchParams(location.search);
+        const accessToken = queryParams.get('access_token');
+
+        if (accessToken) {
+          try {
+            // Exchange access token for session
+            const { error: tokenError } = await supabase.auth.setSession({
+              access_token: accessToken,
+              refresh_token: queryParams.get('refresh_token'),
+            });
+
+            if (tokenError) throw tokenError;
+
+            // Remove token from URL
+            navigate('/dashboard', { replace: true });
+          } catch (err) {
+            console.error('Session setup error:', err);
+            navigate('/login');
+          }
+        } else {
+          navigate('/login');
+        }
+      }
+    };
+
+    handleAuthRedirect();
+  }, [location, navigate]);
+
 
   const handleTaskCreated = () => {
     // Refresh the task list when a new task is created
