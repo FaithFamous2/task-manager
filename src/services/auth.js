@@ -1,12 +1,5 @@
 import { supabase } from './supabase';
 
-// export const signUp = async (email, password) => {
-//   const { data, error } = await supabase.auth.signUp({
-//     email,
-//     password,
-//   });
-//   return { data, error };
-// };
 export const signUp = async (email, password) => {
   const isProduction = import.meta.env.PROD;
   const baseUrl = isProduction
@@ -39,17 +32,6 @@ export const signOut = async () => {
 export const getCurrentUser = () => {
   return supabase.auth.getUser();
 };
-
-// export const signUpWithRedirect = async (email, password) => {
-//   const { error } = await supabase.auth.signUp({
-//     email,
-//     password,
-//     options: {
-//       emailRedirectTo: `${window.location.origin}/dashboard`,
-//     },
-//   });
-//   return { error };
-// };
 
 export const signUpWithRedirect = async (email, password) => {
   const isProduction = import.meta.env.PROD;
